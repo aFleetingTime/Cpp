@@ -1,6 +1,7 @@
 #include "Sales_item.h"
 #include <vector>
 #include <fstream>
+#include <sstream>
 //#include "readfile.h"
 
 int main(int argv, char **args)
@@ -19,7 +20,10 @@ int main(int argv, char **args)
 			do
 			{
 				Sales_item temp;
-				input >> temp;
+				std::string line;
+				std::getline(input, line);
+				std::istringstream buf(line);
+				buf >> temp;
 				if(!items.empty() && temp.isbn() == items.back().isbn())
 					items.back() += temp;
 				else if(input)

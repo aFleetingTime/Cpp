@@ -20,11 +20,11 @@ int main()
 	addFunc backfun = &std::deque<int>::push_back;
 	addFunc frontfun = &std::deque<int>::push_front;
 
-	add(ideq, 10, backfun);
+	add(ideq, 100, backfun);
 	std::for_each(ideq.cbegin(), ideq.cend(), print);
 	std::cout << "beg = " << *beg << std::endl;
 
-	add(ideq, 10, frontfun);
+	add(ideq, 100, frontfun);
 	std::for_each(ideq.cbegin(), ideq.cend(), print);
 	std::cout << "beg = " << *beg << std::endl;
 }

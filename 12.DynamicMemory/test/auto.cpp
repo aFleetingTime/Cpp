@@ -2,8 +2,6 @@
 #include <memory>
 #include <cstdlib>
 #include <unistd.h>
-#include <signal.h>
-#include <sys/types.h>
 
 struct Test
 {
@@ -13,7 +11,8 @@ struct Test
 
 int main()
 {
-	kill(getpid(), SIGSEGV);
+	std::cout << sizeof(std::shared_ptr<int>) << std::endl;
+	std::cout << sizeof(int*) << std::endl;
 	auto p = new Test;
 	delete p;
 	delete p;

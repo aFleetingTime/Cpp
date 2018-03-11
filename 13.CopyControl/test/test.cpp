@@ -9,4 +9,5 @@ int main()
 	std::vector<std::string> vec(lst.cbegin(), lst.cend());
 	for(auto &s : vec)
 		std::cout << s << std::endl;
+	std::cout << std::vector<int>().capacity() << std::endl;
 }

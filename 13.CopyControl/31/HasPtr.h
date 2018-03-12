@@ -18,6 +18,5 @@ public:
 
 private:
 	std::string *sp;
-	std::size_t *useCount;
 	int i;
 };

@@ -20,5 +20,8 @@ int main()
 	f.readMessage(std::cout);
 	std::cout << "-------" << std::endl;
 	f2.readMessage(std::cout);
-	std::cout << "-------" << std::endl;
+	std::cout << "----move----" << std::endl;
+	f2.readMessage(std::cout);
+	m1 = std::move(m2);
+	f2.readMessage(std::cout);
 }

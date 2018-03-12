@@ -17,6 +17,11 @@ Message::~Message()
 	std::cout << "folders.size(): " << folders.size() << std::endl;
 }
 
+Message::Message(Message &&mes) : contents(std::move(mes.contents)), folders(std::move(mes.folders))
+{
+	moveFolders(&mes);
+}
+
 Message& Message::operator=(const Message &mes)
 {
 	removeFormFolders();
@@ -24,6 +29,28 @@ Message& Message::operator=(const Message &mes)
 	contents = mes.contents;
 	addToAllFolders();
 	return *this;
+}
+
+Message& Message::operator=(Message &&mes)
+{
+	if(this != &mes)
+	{
+		removeFormFolders();
+		contents = std::move(mes.contents);
+		folders = std::move(mes.folders);
+		moveFolders(&mes);
+	}
+	return *this;
+}
+
+void Message::moveFolders(Message *mes)
+{
+	for(auto folder : folders)
+	{
+		folder->remove(*mes);
+		folder->onlySave(*this);
+	}
+	mes->folders.clear();
 }
 
 void swap(Message &mes1, Message &mes2)

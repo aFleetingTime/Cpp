@@ -7,7 +7,7 @@
 struct Compare
 {
 	Compare(const std::string s) : repStr(s) {}
-	bool operator()(const std::string s) { return s == repStr; }
+	bool operator()(const std::string s) const { return s == repStr; }
 private:
 	std::string repStr;
 };
@@ -15,8 +15,8 @@ private:
 struct PrintString
 {
 	PrintString(std::ostream &os = std::cout, char c = ' ') : out(os), sep(c) {}
-	std::ostream& operator()(const std::string s) { out << s << sep; return out; }
-	void operator()(std::vector<std::string>::const_iterator beg, std::vector<std::string>::const_iterator end)
+	std::ostream& operator()(const std::string s) const { out << s << sep; return out; }
+	void operator()(std::vector<std::string>::const_iterator beg, std::vector<std::string>::const_iterator end) const
 	{
 		while(beg != end)
 			out << *beg++ << sep;
@@ -29,8 +29,8 @@ private:
 struct GetLineString
 {
 	GetLineString(std::istream &is = std::cin) : in(is) {}
-	std::string operator()() { std::string temp; std::getline(in, temp); return temp; }
-	void operator()(std::back_insert_iterator<std::vector<std::string>> beg)
+	std::string operator()() const { std::string temp; std::getline(in, temp); return temp; }
+	void operator()(std::back_insert_iterator<std::vector<std::string>> beg) const
 	{
 		for(std::string line; std::getline(in, line); *beg = line);
 		std::cin.clear(std::cin.rdstate() & ~std::cin.failbit & ~std::cin.eofbit);

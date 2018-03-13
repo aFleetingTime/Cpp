@@ -13,6 +13,11 @@ void StrBlob::push_back(const value_type &val)
 {
 	dataVec->push_back(val);
 }
+void StrBlob::push_back(value_type &&val)
+{
+	dataVec->push_back(std::move(val));
+}
+
 void StrBlob::pop_back()
 {
 	check(0, "没有可删除的元素!");

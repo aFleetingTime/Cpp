@@ -49,6 +49,7 @@ public:
 	StrBlob& operator=(const StrBlob &);
 
 	void push_back(const value_type &);
+	void push_back(value_type &&);
 	void pop_back();
 
 	std::string& back();

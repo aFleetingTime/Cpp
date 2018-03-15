@@ -19,6 +19,8 @@ std::ostream& debugQuote(std::ostream &out, const Quote &quote)
 
 int main()
 {
+	// cannot declare variable ‘test’ to be of abstract type ‘DiscQuote’
+	// DiscQuote test;
 	Quote quote("1665X564AA54D", 55);
 	BulkQuote bulk("456AS4512587F", 55, 0.5, 6);
 	LimitedQuote lim("18FAS8495SFA", 55, 0.5, 6);

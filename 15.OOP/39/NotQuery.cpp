@@ -1,6 +1,10 @@
 #include "NotQuery.h"
 
-NotQuery::NotQuery(const Query &q) : query(q) { }
+NotQuery::NotQuery(const Query &q) : query(q) { 
+#ifndef NDEBUG
+	std::cout << "NotQuery::NotQuery(const Query&)" << std::endl;
+#endif
+}
 
 QueryResult NotQuery::eval(const TextQuery &tq) const
 {

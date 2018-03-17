@@ -1,0 +1,9 @@
+(a) 1.Query("fiery")				   = Query(std::string) -> Query_base() -> WordQuery(std::string)
+	2.Query("bird")					   = Query(std::string) -> Query_base() -> WordQuery(std::string)
+	3.Query("wind")					   = Query(std::string) -> Query_base() -> WordQuery(std::string)
+	4.(Query("fiery") & Query("bird")) = AndQuery(lhs,rhs) -> BinaryQuery(lhs,rhs,"&") -> Query_base() -> Query(const Query&)*2 -> Query(std::shared_ptr<Query_base>)
+	5.(Query(AndQuery(Query("fiery"),Query("bird"))) & Query("wind")) = OrQuery(lhs,rhs) -> BinaryQuery(lhs,rhs,"|") -> Query_base() -> Query(const Query&) -> Query(std::shared_ptr<Query_base>)
+
+(b) std::cout << p  =  operator<<(std::cout, p) -> Query::rep() -> OrQuery::rep() -> OrQuery::lhs.Query::rep() -> AndQuery::rep() -> AndQuery::lhs.Query::rep() -> WordQuery::rep() -> AndQuery::rhs.Query::rep() -> WordQuery::rep() -> OrQuery::rhs.Query::rep() -> WordQuery::rep()
+
+(c) q.eval(textQuery)  =  Query::eval -> OrQuery::eval -> OrQuery::lhs.AndQuery::eval -> AndQuery::lhs.WordQuery::eval -> AndQuery::rhs.WordQuery::eval -> OrQuery::rhs.WordQuery::eval

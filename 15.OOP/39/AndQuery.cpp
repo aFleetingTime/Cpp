@@ -1,6 +1,10 @@
 #include "AndQuery.h"
 
-AndQuery::AndQuery(const Query &left, const Query &right) : BinaryQuery(left, right, "&") { }
+AndQuery::AndQuery(const Query &left, const Query &right) : BinaryQuery(left, right, "&") {
+#ifndef NDEBUG
+	std::cout << "AndQuery::AndQuery(const Query&, const Query&)" << std::endl;
+#endif
+}
 
 QueryResult AndQuery::eval(const TextQuery &tq) const
 {

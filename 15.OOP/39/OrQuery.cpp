@@ -1,6 +1,10 @@
 #include "OrQuery.h"
 
-OrQuery::OrQuery(const Query &left, const Query &right) : BinaryQuery(left, right, "|") { }
+OrQuery::OrQuery(const Query &left, const Query &right) : BinaryQuery(left, right, "|") {
+#ifndef NDEBUG
+	std::cout << "OrQuery::OrQuery(const Query&, const Query&)" << std::endl;
+#endif
+}
 
 QueryResult OrQuery::eval(const TextQuery &tq) const
 {

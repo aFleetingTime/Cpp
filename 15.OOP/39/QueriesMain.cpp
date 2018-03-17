@@ -2,6 +2,8 @@
 #include <fstream>
 #include "TextQuery.h"
 #include "QueryResult.h"
+#include "AndQuery.h"
+#include "NotQuery.h"
 
 std::string getPath(const std::string opInfo)
 {
@@ -31,7 +33,11 @@ void runQueries(std::ifstream &text)
 			query.retext(text);
 		}
 		else
-			std::cout << '\n' << query.query(input);
+			std::cout << '\n' << (Query(input) & Query("bird") | Query("wind")).eval(query);
+			//std::cout << '\n' << (Query(input) & Query("Alice")).eval(query);
+			//std::cout << '\n' << (Query(input) | Query("Alice")).eval(query);
+			//std::cout << '\n' << (~Query(input)).eval(query);
+			//std::cout << '\n' << query.query(input);
 		std::cout << std::endl;
 	}
 }

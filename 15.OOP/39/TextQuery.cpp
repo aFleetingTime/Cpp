@@ -15,7 +15,8 @@ QueryResult TextQuery::query(const std::string &word) const
 	auto iter = wordLine.find(word);
 	if(iter != wordLine.end())
 		return { lineText, *iter };
-	return { lineText, std::make_pair(word, std::shared_ptr<std::set<line_type>>()) };
+	return { lineText, std::make_pair(word, std::make_shared<std::set<line_type>>()) };
+	return { lineText, { word, std::shared_ptr<std::set<line_type>>(new std::set<line_type>) } };
 }
 
 void TextQuery::retext(std::istream &in)

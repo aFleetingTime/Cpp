@@ -22,7 +22,7 @@ public:
 
 	void push_back(const value_type &);
 	value_type* begin() const { return firstPoint; }
-	value_type* end() const { return lastPoint; }
+	value_type* end() const { return curPoint; }
 	size_type size() const { return curPoint - firstPoint; }
 	size_type capacity() const { return lastPoint - firstPoint; }
 	void clear();

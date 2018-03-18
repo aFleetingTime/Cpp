@@ -10,11 +10,7 @@ protected:
 	std::string opSym;
 };
 
-inline BinaryQuery::BinaryQuery(const Query &left, const Query &right, const std::string &op) : lhs(left), rhs(right), opSym(op) { 
-#ifndef NDEBUG
-	std::cout << "BinaryQuery::BinaryQuery(const Query&, const Query&, const std::string&)" << std::endl;
-#endif
-}
+inline BinaryQuery::BinaryQuery(const Query &left, const Query &right, const std::string &op) : lhs(left), rhs(right), opSym(op) { }
 
 inline std::string BinaryQuery::rep() const {
 	return "(" + lhs.rep() + " " + opSym + " " + rhs.rep() + ")";

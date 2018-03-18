@@ -13,4 +13,6 @@ private:
 	std::string rep() const override;
 	Query query;
 	std::shared_ptr<QueryBase> p;
+	virtual operator QueryBase*() const & override;
+	virtual operator QueryBase*() && override;
 };

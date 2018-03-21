@@ -10,10 +10,7 @@ class C2
 };
 
 template <typename T>
-class Pal2
-{
-
-};
+class Pal2 { };
 
 char del(int *p)
 {
@@ -40,6 +37,31 @@ void f(const T &a)
 	std::cout << a.c_str() << std::endl;
 }
 
+template <typename T1, typename T2>
+struct Sum
+{
+	T1 operator()(const T1 &a, const T2 &b) {
+		return a + b;
+	}
+};
+
+template <typename T1>
+struct Sum<T1, long long int>
+{
+	T1 operator()(const T1 &a, const long long int &b) {
+		return a + b;
+	}
+};
+
+template <>
+struct Sum<long long int, long long int>
+{
+	long long int operator()(const long long int &a, const long long int &b) {
+		std::cout << ".." << std::endl;
+		return a + b;
+	}
+};
+
 int main()
 {
 #if 0
@@ -51,6 +73,7 @@ int main()
 	int a = 134, b = 1352;
 	int &&c = static_cast<int&&>(a);
 	f3(b);
-#endif
 	f(std::string("aaa"));
+#endif
+	std::cout << Sum<int, long long int>()(2000000000, 200000000) << std::endl;
 }

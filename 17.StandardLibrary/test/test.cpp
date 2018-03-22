@@ -1,9 +1,15 @@
 #include <tuple>
+#include <bitset>
+#include <vector>
 #include <iostream>
 
 int main()
 {
-	std::tuple<int, int, int> tp1(1, 1, 3);
-	std::tuple<int, int, int, int> tp2(1, 2, 2, 3);
-	std::cout << (tp1 < tp2) << std::endl;
+	std::bitset<32> bits;
+	std::cin >> bits;
+	std::cout << (bits ^ std::bitset<32>(0xFFFFFFFF)) << std::endl;
+	int a[2] { 0, 1 };
+	auto [x, y] = a;
+	auto v = std::vector { 1,2,3,4,5 };
+	std::vector l{ 1,2,3,4,5 };
 }

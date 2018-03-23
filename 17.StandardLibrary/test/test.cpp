@@ -2,6 +2,7 @@
 #include <bitset>
 #include <vector>
 #include <iostream>
+#include <sstream>
 #include <random>
 #include <iterator>
 #include <algorithm>
@@ -40,6 +41,7 @@ int main()
 	e2();
 	std::cout << e1() << "  " << e2() << std::endl;
 #endif
+#if 0
 	static std::default_random_engine e;
 	static std::uniform_int_distribution<unsigned> u;
 	while(1)
@@ -47,4 +49,44 @@ int main()
 		e.seed(0);
 		std::cout << u(e) << std::endl;
 	}
+#endif
+#if 0
+	std::cout << std::boolalpha << true << " " << false << std::noboolalpha << std::endl;
+	std::cout << true << " " << false << std::endl;
+#endif
+#if 0
+	double d = 3.1415926;
+	std::cout << "default: " << std::cout.precision() << " value: " << d << std::endl;
+	int old = std::cout.precision(1);
+	std::cout << "precision: " << std::cout.precision() << " value: " << d << std::endl;
+	std::cout.precision(8);
+	std::cout << "precision: " << std::cout.precision() << " value: " << d << std::endl;
+	std::cout.precision(old);
+	std::cout << "precision: " << std::cout.precision() << std::endl;
+#endif
+#if 0
+	double d = 3.0;
+	//std::cout << std::hexfloat << std::uppercase <<  d << std::defaultfloat << std::nouppercase << std::endl;
+	std::cout << d << std::endl;
+	std::cout << std::fixed << d << std::defaultfloat << std::endl;
+	std::cout << d << std::endl;
+#endif
+#if 0
+	std::string s("Hello World!!!");
+	std::istringstream iss(s);
+	for(int i = 0; i < 5; std::cin.get(), ++i);
+	//for(int i = 0; i < 5; std::cin.unget(), ++i);
+	char c = 0;
+	//while(std::cin.get(c) && c != -1)
+	std::string temp;
+	while(iss >> temp)
+	{
+		std::cout << temp;
+	std::cout << iss.gcount() << std::endl;
+	}
+	std::cout << iss.gcount() << std::endl;
+#endif
+	int c = -1;
+	while((c = std::cin.get()) != EOF)
+		std::cout.put(c);
 }

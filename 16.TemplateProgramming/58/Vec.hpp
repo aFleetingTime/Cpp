@@ -11,13 +11,13 @@ public:
 	using size_type = std::size_t;
 	using value_type = T;
 
-	Vec() : firstPoint(nullptr), lastPoint(nullptr), curPoint(nullptr) {}
+	Vec() noexcept : firstPoint(nullptr), lastPoint(nullptr), curPoint(nullptr) { }
 	Vec(std::initializer_list<value_type>);
 	Vec(size_type, const value_type &val);
 	Vec(const Vec &);
-	Vec(Vec &&) noexcept;
+	Vec(Vec &&);
 	~Vec();
-	Vec& operator=(Vec &&) noexcept;
+	Vec& operator=(Vec &&);
 	Vec& operator=(const Vec &);
 	std::string& operator[](size_type);
 	const std::string& operator[](size_type) const;
@@ -27,10 +27,10 @@ public:
 		alloc.construct(curPoint++, std::forward<Args>(rest)...);
 	}
 	void push_back(const value_type &);
-	value_type* begin() const { return firstPoint; }
-	value_type* end() const { return curPoint; }
-	size_type size() const { return curPoint - firstPoint; }
-	size_type capacity() const { return lastPoint - firstPoint; }
+	value_type* begin() const noexcept { return firstPoint; }
+	value_type* end() const noexcept { return curPoint; }
+	size_type size() const noexcept { return curPoint - firstPoint; }
+	size_type capacity() const noexcept { return lastPoint - firstPoint; }
 
 private:
 	value_type *firstPoint;
@@ -80,7 +80,7 @@ Vec<T>::~Vec()
 }
 
 template <typename T>
-Vec<T>::Vec(Vec &&vec) noexcept : firstPoint(vec.firstPoint), lastPoint(vec.lastPoint), curPoint(vec.curPoint)
+Vec<T>::Vec(Vec &&vec) : firstPoint(vec.firstPoint), lastPoint(vec.lastPoint), curPoint(vec.curPoint)
 {
 	vec.firstPoint = vec.lastPoint = vec.curPoint = nullptr;
 }
@@ -96,7 +96,7 @@ Vec<T>& Vec<T>::operator=(const Vec &vec)
 }
 
 template <typename T>
-Vec<T>& Vec<T>::operator=(Vec &&vec) noexcept
+Vec<T>& Vec<T>::operator=(Vec &&vec)
 {
 	if(this != &vec)
 	{

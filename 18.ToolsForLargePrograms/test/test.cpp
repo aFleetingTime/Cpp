@@ -26,7 +26,24 @@ struct D : public D1, public D2
 	D() { std::cout << "D" << std::endl; }
 };
 
+struct DD : public B1, virtual B2
+{
+};
+
+void f()
+{
+	throw;
+}
+
 int main()
 {
-	D d;
+	try {
+		try {
+			throw 1;
+		} catch(...) {
+			f();
+		}
+	} catch(...) {
+		std::cout << "e" << std::endl;
+	}
 }

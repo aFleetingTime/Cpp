@@ -54,13 +54,13 @@ Screen& Screen::home(pos len)
 }
 Screen& Screen::forward(pos len)
 {
-	cursor -= len;
+	cursor += len;
 	rangeCheck();
 	return *this;
 }
 Screen& Screen::back(pos len)
 {
-	cursor += len;
+	cursor -= len;
 	rangeCheck();
 	return *this;
 }

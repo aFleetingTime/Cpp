@@ -1,20 +1,21 @@
 #include <new>
 #include <iostream>
 #include <cstddef>
+#include <string>
 
-class Class
+union Union
 {
-public:
-	static int Class::* data();
-private:
-	int i = 1;
+	char cval;
+	int ival;
+	long long lval;
+	double dval;
 };
-int Class::* Class::data() {
-	return &Class::i;
-}
 
 int main()
 {
-	Class c;
-	std::cout << c.*Class::data() << std::endl;
+	Union u;
+	std::cout << static_cast<void*>(&u.cval) << '\n'
+			  << &u.ival << '\n'
+			  << &u.lval << '\n'
+			  << &u.dval << std::endl;
 }

@@ -11,6 +11,11 @@ const std::array<Screen::ActionType, Screen::DOWN + 1> Screen::menu {
 Screen::Screen() : cursor(0) { }
 Screen::Screen(pos rw, pos cl, char c, pos b) : contents(rw * cl, c), row(rw), col(cl), cursor(b) { }
 
+Screen& Screen::setColor(std::ostream &os, Color c) {
+	os << c.toColor();
+	return *this;
+}
+
 Screen::pos Screen::current() const noexcept { return cursor; }
 char Screen::get() const 
 { 
@@ -96,9 +101,8 @@ const char& Screen::operator[](pos index) const
 }
 std::ostream& operator<<(std::ostream &os, const Screen &screen)
 {
-	std::ostringstream buf;
+	std::string buf;
 	for(Screen::pos len = 0; len != screen.col * screen.row; len += screen.row)
-		buf << screen.contents.substr(len, screen.row) << '\n';
-	std::cout << buf.str();
-	return os;
+		(buf += screen.contents.substr(len, screen.row)).push_back('\n');
+	return os << buf;
 }

@@ -13,6 +13,36 @@ public:
 	using getType = char (Screen::*)() const;
 
 	enum Directions { HOME, FORWARD, BACK, UP, DOWN };
+	class Color {
+	public:
+		enum C : short {
+			BLACK, RED, GREEN, YELLOW, BLUE, PURPLE, WHITE
+		};
+		Color(const Color &) = default;
+		Color(C c) : color(c) {}
+		Color& operator=(const Color &) = default;
+		Color& operator=(C c) { color = c; }
+		std::string toColor() {
+			switch(color)
+			{
+			case RED:
+				return "\033[31m";
+			case GREEN:
+				return "\033[32m";
+			case YELLOW:
+				return "\033[33m";
+			case BLUE:
+				return "\033[34m";
+			case PURPLE:
+				return "\033[35m";
+			case WHITE:
+				return "\033[36m";
+			default:
+				return "\033[30m";
+			}
+		}
+		C color;
+	};
 
 	Screen();
 	Screen(pos, pos, char c = '*', pos b = 0);
@@ -30,6 +60,8 @@ public:
 	Screen& back(pos);
 	Screen& up(pos);
 	Screen& down(pos);
+
+	Screen& setColor(std::ostream &os, Color color);
 
 	explicit operator bool() const;
 	char& operator[](pos);
